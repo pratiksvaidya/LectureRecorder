@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
+import getpass
 import selenium.webdriver as webdriver
-import urllib
 import time
+import urllib.request
+
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('headless')
@@ -14,8 +16,7 @@ driver.get(url)
 # Login
 print('Enter UM username: ', end = '')
 username = input()
-print('Enter UM password: ', end = '')
-password = input()
+password = getpass.getpass('Enter UM password: ')
 
 print("\nLogging in...\n")
 
