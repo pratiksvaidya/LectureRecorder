@@ -18,7 +18,7 @@ print('Enter UM username: ', end = '')
 username = input()
 password = getpass.getpass('Enter UM password: ')
 
-print("\nLogging in...\n")
+print("\nLogging in...")
 
 username_element = driver.find_element_by_id("login")
 password_element = driver.find_element_by_id("password")
@@ -26,9 +26,11 @@ username_element.send_keys(username)
 password_element.send_keys(password)
 driver.find_element_by_id('loginSubmit').click()
 
-# Wait for Two Factor Auth
-while (driver.title != 'College of Engineering Lecture Recordings - Available Courses'):
-    time.sleep(2)
+if driver.find_element_by_id('title').text == "Two-Factor Authentication Required":
+    # Wait for Two Factor Auth
+    print("Please accept 2FA authentication request.\n")
+    while (driver.title != 'College of Engineering Lecture Recordings - Available Courses'):
+        time.sleep(2)
 
 # Get Courses
 soup = BeautifulSoup(driver.page_source, features='html.parser')
