@@ -96,7 +96,7 @@ time.sleep(2)
 soup = BeautifulSoup(driver.page_source, features='html.parser')
 video_url = soup.find('video')['src']
 
-file_name = lectures[lecture_num - 1]['title'][6:].strip() + ".mp4"
+file_name = lectures[int(lecture_num) - 1]['title'][6:].strip() + ".mp4"
 print('\nDownloading ' + file_name + " ...")
 if '/' in file_name:
     file_name = file_name.replace('/', '-')
